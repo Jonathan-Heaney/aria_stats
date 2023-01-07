@@ -375,5 +375,34 @@ ON
 	t2.language = t3.language
 ORDER BY t3.sum_freq DESC
 	
-	
+-- Find the most prolific decade in terms of aria frequency
+SELECT 
+	decade, 
+	SUM(frequency) AS frequency
+FROM arias
+GROUP BY decade
+ORDER BY frequency desc
 
+-- Find the most prolific decade in terms of aria count
+SELECT 
+	decade, 
+	COUNT(aria) AS aria_count
+FROM arias
+GROUP BY decade
+ORDER BY aria_count desc
+
+-- Find the most prolific century in terms of aria frequency
+SELECT 
+	century,
+	SUM(frequency) AS frequency
+FROM arias
+GROUP BY century
+ORDER BY frequency desc
+
+-- Find the most prolific century in terms of aria count
+SELECT 
+	century, 
+	COUNT(aria) AS aria_count
+FROM arias
+GROUP BY century
+ORDER BY aria_count desc
