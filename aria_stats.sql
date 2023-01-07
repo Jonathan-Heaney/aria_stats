@@ -1,7 +1,7 @@
 -- Create the table before uploading the dataset to Postgres
 CREATE TABLE arias (
 	aria VARCHAR(1000),
-	character VARCHAR(255),
+	role VARCHAR(255),
 	opera VARCHAR(1000),
 	composer VARCHAR(255),
 	voice_part VARCHAR(255),
@@ -67,7 +67,7 @@ ORDER BY frequency DESC
 SELECT 
 	composer, 
 	opera,
-	character,
+	role,
 	language, 
 	COUNT(aria) aria_count
 FROM arias
@@ -75,7 +75,7 @@ WHERE voice_part = 'Soprano'
 GROUP BY 
 	composer,
 	opera,
-	character,
+	role,
 	language
 HAVING COUNT(aria) >= 3
 ORDER BY aria_count DESC
@@ -275,4 +275,105 @@ JOIN (
 	) c
 ON s.voice_part = c.voice_part
 ORDER BY s.frequency_percent DESC
+
+-- Find the number of "hit" arias per composer- the number of arias that was offered more than average
+SELECT 
+	composer, 
+	composer_nationality,
+	COUNT(work) hits
+FROM 
+	(SELECT 
+	 	composer, 
+	 	composer_nationality,
+	 	work, 
+	 	SUM(performances) AS sum_perf
+	FROM opera_stats
+	GROUP BY 1, 2, 3
+	HAVING SUM(performances) > 
+		(SELECT AVG(sum_perf)
+		FROM
+			(SELECT 
+				composer,
+			 	work, 
+			 	SUM(performances) AS sum_perf
+			FROM opera_stats
+			GROUP BY 1, 2) t1) 
+		) t2
+GROUP BY 
+	composer, 
+	composer_nationality
+ORDER BY hits DESC
+
+-- Find the number of hit arias per opera
+SELECT 
+	composer, 
+	opera,
+	COUNT(aria) AS hits
+FROM 
+	(SELECT 
+	 	composer, 
+	 	opera,
+	 	aria, 
+	 	frequency
+	FROM arias
+	GROUP BY 
+		composer,
+	 	opera,
+		aria,
+		frequency
+	HAVING frequency > (SELECT AVG(frequency) 
+						FROM arias)
+	) sub
+GROUP BY composer, opera 
+ORDER BY hits DESC
+
+-- Rank the composers by frequency, showing language
+SELECT 
+	composer, 
+	language, 
+	SUM(frequency) AS frequency
+FROM arias
+GROUP BY	
+	composer, 
+	language
+ORDER BY frequency DESC
+
+-- Find the top composer for each of the main languages (which have > 100 aria offerings total)
+SELECT
+	t3.composer,
+	t3.language,
+	t3.sum_freq
+FROM 
+	(SELECT 
+		composer, 
+		language, 
+		SUM(frequency) AS sum_freq
+	FROM arias
+	GROUP BY 
+		composer, 
+		language
+	) t3
+JOIN (
+	SELECT 
+		language, 
+		MAX(sum_freq) AS max_freq
+	FROM (
+		SELECT 
+			composer, 
+			language, 
+			SUM(frequency) AS sum_freq
+		FROM arias
+		GROUP BY 
+			composer, 
+			language
+		) t1
+	GROUP BY language
+	HAVING MAX(sum_freq) > 100
+	) t2
+ON 
+	t2.max_freq = t3.sum_freq AND
+	t2.language = t3.language
+ORDER BY t3.sum_freq DESC
+	
+	
 
