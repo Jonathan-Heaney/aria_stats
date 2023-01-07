@@ -767,3 +767,93 @@ GROUP BY
 ORDER BY
 	decade, 
 	sum_freq DESC
+
+-- Find the number of distinct composers per decade
+SELECT 
+	decade, 
+	COUNT(DISTINCT(composer)) AS composer_count
+FROM arias
+GROUP BY 
+	 decade
+ORDER BY
+	decade
+
+-- Find the number of distinct composers per century
+SELECT 
+	century, 
+	COUNT(DISTINCT(composer)) AS composer_count
+FROM arias
+GROUP BY 
+	 century
+ORDER BY
+	century
+
+-- Find the number of distinct operas per decade
+SELECT 
+	decade, 
+	COUNT(DISTINCT(opera)) AS opera_count
+FROM arias
+GROUP BY 
+	decade
+ORDER BY
+	decade
+
+-- Find the number of distinct operas per century
+SELECT 
+	century, 
+	COUNT(DISTINCT(opera)) AS opera_count
+FROM arias
+GROUP BY 
+	century
+ORDER BY
+	century
+
+-- Query that combines the count of composers and aria frequency count per decade
+SELECT 
+	t1.decade, 
+	t2.composer_count, 
+	t1.aria_frequency
+FROM (
+	SELECT 
+		decade, 
+		SUM(frequency) AS aria_frequency
+	FROM arias
+	GROUP BY decade
+	) t1
+JOIN (
+	SELECT 
+		decade, 
+		COUNT(DISTINCT(composer)) AS composer_count
+	FROM arias
+	GROUP BY decade
+	) t2
+ON t1.decade = t2.decade
+GROUP BY 
+	t1.decade,
+	t2.composer_count,
+	t1.aria_frequency
+
+-- Query that combines the count of operas and aria frequency count per decade
+SELECT 
+	t1.decade, 
+	t2.opera_count, 
+	t1.aria_frequency
+FROM (
+	SELECT 
+		decade, 
+		SUM(frequency) AS aria_frequency
+	FROM arias
+	GROUP BY decade
+	) t1
+JOIN (
+	SELECT 
+		decade, 
+		COUNT(DISTINCT(opera)) AS opera_count
+	FROM arias
+	GROUP BY decade
+	) t2
+ON t1.decade = t2.decade
+GROUP BY 
+	t1.decade,
+	t2.opera_count,
+	t1.aria_frequency
