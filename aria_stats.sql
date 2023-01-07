@@ -406,3 +406,297 @@ SELECT
 FROM arias
 GROUP BY century
 ORDER BY aria_count desc
+
+-- Find the most prolific composer per decade, in terms of aria frequency
+SELECT
+	t3.decade,
+	t3.composer,
+	t3.sum_freq
+FROM 
+	(SELECT 
+		decade, 
+		composer, 
+		SUM(frequency) AS sum_freq
+	FROM arias
+	GROUP BY 
+	 	decade,
+		composer 
+	) t3
+JOIN (
+	SELECT 
+		decade, 
+		MAX(sum_freq) AS max_freq
+	FROM (
+		SELECT 
+			decade, 
+			composer, 
+			SUM(frequency) AS sum_freq
+		FROM arias
+		GROUP BY 
+			decade,
+			composer 
+		) t1
+	GROUP BY decade
+	) t2
+ON 
+	t2.max_freq = t3.sum_freq AND
+	t2.decade = t3.decade
+ORDER BY t3.decade, t3.sum_freq DESC
+
+-- Find the most prolific language per decade, in terms of aria frequency
+SELECT
+	t3.decade,
+	t3.language,
+	t3.sum_freq
+FROM 
+	(SELECT 
+		decade, 
+		language, 
+		SUM(frequency) AS sum_freq
+	FROM arias
+	GROUP BY 
+	 	decade,
+		language 
+	) t3
+JOIN (
+	SELECT 
+		decade, 
+		MAX(sum_freq) AS max_freq
+	FROM (
+		SELECT 
+			decade, 
+			language, 
+			SUM(frequency) AS sum_freq
+		FROM arias
+		GROUP BY 
+			decade,
+			language 
+		) t1
+	GROUP BY decade
+	) t2
+ON 
+	t2.max_freq = t3.sum_freq AND
+	t2.decade = t3.decade
+ORDER BY t3.decade, t3.sum_freq DESC
+
+-- Find the most prolific opera per decade, in terms of aria frequency
+SELECT
+	t3.decade,
+	t3.composer,
+	t3.opera,
+	t3.language,
+	t3.sum_freq
+FROM 
+	(SELECT 
+		decade,
+	 	composer,
+		opera, 
+	 	language,
+		SUM(frequency) AS sum_freq
+	FROM arias
+	GROUP BY 
+	 	decade,
+	 	composer,
+		opera,
+	 	language
+	) t3
+JOIN (
+	SELECT 
+		decade, 
+		MAX(sum_freq) AS max_freq
+	FROM (
+		SELECT 
+			decade,
+			composer,
+			opera, 
+			language,
+			SUM(frequency) AS sum_freq
+		FROM arias
+		GROUP BY 
+			decade,
+			composer,
+			opera, 
+			language
+		) t1
+	GROUP BY decade
+	) t2
+ON 
+	t2.max_freq = t3.sum_freq AND
+	t2.decade = t3.decade
+ORDER BY t3.decade, t3.sum_freq DESC
+
+-- Find the most popular aria per decade
+SELECT
+	t3.decade,
+	t3.composer,
+	t3.opera,
+	t3.aria,
+	t3.voice_part,
+	t3.language,
+	t3.sum_freq
+FROM 
+	(SELECT 
+		decade,
+	 	composer,
+		opera, 
+	 	aria,
+	 	voice_part,
+	 	language,
+		SUM(frequency) AS sum_freq
+	FROM arias
+	GROUP BY 
+	 	decade,
+	 	composer,
+		opera,
+	 	aria,
+	 	voice_part,
+	 	language
+	) t3
+JOIN (
+	SELECT 
+		decade, 
+		MAX(sum_freq) AS max_freq
+	FROM (
+		SELECT 
+			decade,
+			composer,
+			opera, 
+			aria,
+			voice_part,
+			language,
+			SUM(frequency) AS sum_freq
+		FROM arias
+		GROUP BY 
+			decade,
+			composer,
+			opera, 
+			aria,
+			voice_part,
+			language
+		) t1
+	GROUP BY decade
+	) t2
+ON 
+	t2.max_freq = t3.sum_freq AND
+	t2.decade = t3.decade
+ORDER BY t3.decade, t3.sum_freq DESC
+
+-- Find the most prolific composer per century, in terms of aria frequency
+SELECT
+	t3.century,
+	t3.composer,
+	t3.sum_freq
+FROM 
+	(SELECT 
+		century, 
+		composer, 
+		SUM(frequency) AS sum_freq
+	FROM arias
+	GROUP BY 
+	 	century,
+		composer 
+	) t3
+JOIN (
+	SELECT 
+		century, 
+		MAX(sum_freq) AS max_freq
+	FROM (
+		SELECT 
+			century, 
+			composer, 
+			SUM(frequency) AS sum_freq
+		FROM arias
+		GROUP BY 
+			century,
+			composer 
+		) t1
+	GROUP BY century
+	) t2
+ON 
+	t2.max_freq = t3.sum_freq AND
+	t2.century = t3.century
+ORDER BY t3.century, t3.sum_freq DESC
+
+-- Find the most prolific language per century, in terms of aria frequency
+SELECT
+	t3.century,
+	t3.language,
+	t3.sum_freq
+FROM 
+	(SELECT 
+		century, 
+		language, 
+		SUM(frequency) AS sum_freq
+	FROM arias
+	GROUP BY 
+	 	century,
+		language 
+	) t3
+JOIN (
+	SELECT 
+		century, 
+		MAX(sum_freq) AS max_freq
+	FROM (
+		SELECT 
+			century, 
+			language, 
+			SUM(frequency) AS sum_freq
+		FROM arias
+		GROUP BY 
+			century,
+			language 
+		) t1
+	GROUP BY century
+	) t2
+ON 
+	t2.max_freq = t3.sum_freq AND
+	t2.century = t3.century
+ORDER BY t3.century, t3.sum_freq DESC
+
+-- Find the most prolific opera per century, in terms of aria frequency
+SELECT
+	t3.century,
+	t3.composer,
+	t3.opera,
+	t3.language,
+	t3.sum_freq
+FROM 
+	(SELECT 
+		century,
+	 	composer,
+		opera, 
+	 	language,
+		SUM(frequency) AS sum_freq
+	FROM arias
+	GROUP BY 
+	 	century,
+	 	composer,
+		opera,
+	 	language
+	) t3
+JOIN (
+	SELECT 
+		century, 
+		MAX(sum_freq) AS max_freq
+	FROM (
+		SELECT 
+			century,
+			composer,
+			opera, 
+			language,
+			SUM(frequency) AS sum_freq
+		FROM arias
+		GROUP BY 
+			century,
+			composer,
+			opera, 
+			language
+		) t1
+	GROUP BY century
+	) t2
+ON 
+	t2.max_freq = t3.sum_freq AND
+	t2.century = t3.century
+ORDER BY t3.century, t3.sum_freq DESC
+
+-- Find the most prolific aria per century
