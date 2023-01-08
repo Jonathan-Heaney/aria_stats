@@ -20,7 +20,9 @@ SELECT
 	aria, 
 	voice_part, 
 	language, 
-	frequency
+	frequency,
+	year,
+	century
 FROM arias
 ORDER BY frequency DESC
 
@@ -45,7 +47,9 @@ SELECT
 	aria, 
 	voice_part, 
 	language, 
-	frequency
+	frequency,
+	year,
+	century
 FROM arias
 WHERE 
 	voice_part = 'Tenor' AND 
@@ -74,7 +78,9 @@ SELECT
 	composer, 
 	opera,
 	role,
-	language, 
+	language,
+	year,
+	century,
 	COUNT(aria) aria_count
 FROM arias
 WHERE voice_part = 'Soprano'
@@ -82,7 +88,9 @@ GROUP BY
 	composer,
 	opera,
 	role,
-	language
+	language,
+	year,
+	century
 HAVING COUNT(aria) >= 3
 ORDER BY aria_count DESC
 
@@ -153,6 +161,9 @@ ORDER BY
 SELECT 
 	s.composer,
 	s.opera,
+	s.language,
+	s.year,
+	s.century,
 	s.frequency_count,
 	s.frequency_percent,
 	c.aria_count,
@@ -164,6 +175,9 @@ FROM (
 	SELECT 
 		t1.composer,
 		t1.opera,
+		t1.language,
+		t1.year,
+		t1.century,
 		SUM(t1.frequency) AS frequency_count,
 		ROUND((SUM(t1.frequency) * 1.0 / t2.total_sum * 100), 2) AS frequency_percent
 	FROM 
@@ -172,6 +186,9 @@ FROM (
 	GROUP BY 
 		t1.composer,
 		t1.opera,
+		t1.language,
+		t1.year,
+		t1.century,
 		t2.total_sum
 	) s
 JOIN (
@@ -181,6 +198,9 @@ JOIN (
 	SELECT 
 		t1.composer,
 		t1.opera,
+		t1.language,
+		t1.year,
+		t1.century,
 		COUNT(t1.aria) AS aria_count,
 		ROUND((COUNT(t1.aria) * 1.0 / t2.total_aria_count * 100), 2) AS count_percent
 	FROM 
@@ -189,6 +209,9 @@ JOIN (
 	GROUP BY 
 		t1.composer,
 		t1.opera,
+		t1.language,
+		t1.year,
+		t1.century,
 		t2.total_aria_count
 	) c
 ON 
@@ -308,25 +331,37 @@ ORDER BY hits DESC
 SELECT 
 	composer, 
 	opera,
+	language,
+	year,
+	century,
 	COUNT(aria) AS hits
 FROM 
 	(SELECT 
 	 	composer, 
 	 	opera,
-	 	aria, 
+	 	aria,
+	 	language,
+	 	year,
+	 	century,
 	 	frequency
 	FROM arias
 	GROUP BY 
 		composer,
 	 	opera,
 		aria,
+	 	language,
+	 	year,
+	 	century,
 		frequency
 	HAVING frequency > (SELECT AVG(frequency) 
 						FROM arias)
 	) sub
 GROUP BY 
 	composer, 
-	opera 
+	opera,
+	language,
+	year,
+	century
 ORDER BY hits DESC
 
 -- #4
