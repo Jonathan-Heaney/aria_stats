@@ -6,7 +6,10 @@ CREATE TABLE arias (
 	composer VARCHAR(255),
 	voice_part VARCHAR(255),
 	frequency NUMERIC,
-	language VARCHAR(255)
+	language VARCHAR(255),
+	year NUMERIC,
+	decade VARCHAR(255),
+	century VARCHAR(255)
 )
 
 -- #1 
@@ -22,7 +25,7 @@ FROM arias
 ORDER BY frequency DESC
 
 -- #1a
--- Find the most popular Bel Canto operas- these were written by Rossini, Donizetti, and Bellini
+-- Find the most popular Bel Canto arias- these were written by Rossini, Donizetti, and Bellini
 SELECT 
 	composer, 
 	opera, 
@@ -45,7 +48,8 @@ SELECT
 	frequency
 FROM arias
 WHERE 
-	voice_part = 'Tenor' AND language = 'French'
+	voice_part = 'Tenor' AND 
+	language = 'French'
 ORDER BY frequency
 
 -- #1c
@@ -59,7 +63,9 @@ SELECT
 	frequency,
 	year
 FROM arias
-WHERE voice_part = 'Mezzo' AND year < 1750
+WHERE 
+	voice_part = 'Mezzo' AND 
+	year < 1750
 ORDER BY frequency DESC
 
 -- #1d
@@ -81,7 +87,7 @@ HAVING COUNT(aria) >= 3
 ORDER BY aria_count DESC
 
 -- #1e
--- A baritone doesn't like singing in Italian and doesn't want to sing any romantic 19th-century music.
+-- Find arias for a baritone who doesn't like singing in Italian and doesn't want to sing any romantic 19th-century music.
 SELECT 
 	composer, 
 	opera, 
@@ -98,7 +104,7 @@ WHERE
 ORDER BY frequency DESC
 
 
--- #1
+-- #2
 -- Find the total frequency and total aria count for each composer.
 SELECT 
 	s.composer,
@@ -142,7 +148,7 @@ ORDER BY
 	c.aria_count DESC
 
 
--- #2
+-- #2a
 -- Find the total frequency and total aria count for each opera.
 SELECT 
 	s.composer,
@@ -193,7 +199,7 @@ ORDER BY
 	c.aria_count DESC
 
 
--- #3
+-- #2b
 -- Find the total frequency and total aria count for each language.
 SELECT 
 	s.language,
@@ -235,7 +241,7 @@ ON s.language = c.language
 ORDER BY s.frequency_percent DESC
 
 
--- #4
+-- #2c
 -- Find the total frequency and total aria count for each voice part.
 SELECT 
 	s.voice_part,
@@ -276,34 +282,28 @@ JOIN (
 ON s.voice_part = c.voice_part
 ORDER BY s.frequency_percent DESC
 
--- Find the number of "hit" arias per composer- the number of arias that was offered more than average
+-- #3
+-- Find the number of "hit" arias per composer- the number of arias that were offered more than average
 SELECT 
 	composer, 
-	composer_nationality,
-	COUNT(work) hits
+	COUNT(aria) AS hits
 FROM 
 	(SELECT 
 	 	composer, 
-	 	composer_nationality,
-	 	work, 
-	 	SUM(performances) AS sum_perf
-	FROM opera_stats
-	GROUP BY 1, 2, 3
-	HAVING SUM(performances) > 
-		(SELECT AVG(sum_perf)
-		FROM
-			(SELECT 
-				composer,
-			 	work, 
-			 	SUM(performances) AS sum_perf
-			FROM opera_stats
-			GROUP BY 1, 2) t1) 
-		) t2
-GROUP BY 
-	composer, 
-	composer_nationality
+	 	aria, 
+	 	frequency
+	FROM arias
+	GROUP BY 
+		composer,
+		aria,
+		frequency
+	HAVING frequency > (SELECT AVG(frequency) 
+						FROM arias)
+	) sub
+GROUP BY composer
 ORDER BY hits DESC
 
+-- #3a
 -- Find the number of hit arias per opera
 SELECT 
 	composer, 
@@ -324,9 +324,12 @@ FROM
 	HAVING frequency > (SELECT AVG(frequency) 
 						FROM arias)
 	) sub
-GROUP BY composer, opera 
+GROUP BY 
+	composer, 
+	opera 
 ORDER BY hits DESC
 
+-- #4
 -- Rank the composers by frequency, showing language
 SELECT 
 	composer, 
@@ -338,6 +341,7 @@ GROUP BY
 	language
 ORDER BY frequency DESC
 
+-- #4a
 -- Find the top composer for each of the main languages (which have > 100 aria offerings total)
 SELECT
 	t3.composer,
@@ -374,39 +378,44 @@ ON
 	t2.max_freq = t3.sum_freq AND
 	t2.language = t3.language
 ORDER BY t3.sum_freq DESC
-	
+
+-- #5	
 -- Find the most prolific decade in terms of aria frequency
 SELECT 
 	decade, 
 	SUM(frequency) AS frequency
 FROM arias
 GROUP BY decade
-ORDER BY frequency desc
+ORDER BY frequency DESC
 
+-- #5a
 -- Find the most prolific decade in terms of aria count
 SELECT 
 	decade, 
 	COUNT(aria) AS aria_count
 FROM arias
 GROUP BY decade
-ORDER BY aria_count desc
+ORDER BY aria_count DESC
 
+-- #5b
 -- Find the most prolific century in terms of aria frequency
 SELECT 
 	century,
 	SUM(frequency) AS frequency
 FROM arias
 GROUP BY century
-ORDER BY frequency desc
+ORDER BY frequency DESC
 
+-- #5c
 -- Find the most prolific century in terms of aria count
 SELECT 
 	century, 
 	COUNT(aria) AS aria_count
 FROM arias
 GROUP BY century
-ORDER BY aria_count desc
+ORDER BY aria_count DESC
 
+-- #6
 -- Find the most prolific composer per decade, in terms of aria frequency
 SELECT
 	t3.decade,
@@ -441,8 +450,11 @@ JOIN (
 ON 
 	t2.max_freq = t3.sum_freq AND
 	t2.decade = t3.decade
-ORDER BY t3.decade, t3.sum_freq DESC
+ORDER BY 
+	t3.decade, 
+	t3.sum_freq DESC
 
+-- #6a
 -- Find the most prolific language per decade, in terms of aria frequency
 SELECT
 	t3.decade,
@@ -477,8 +489,11 @@ JOIN (
 ON 
 	t2.max_freq = t3.sum_freq AND
 	t2.decade = t3.decade
-ORDER BY t3.decade, t3.sum_freq DESC
+ORDER BY 
+	t3.decade, 
+	t3.sum_freq DESC
 
+-- #6b
 -- Find the most prolific opera per decade, in terms of aria frequency
 SELECT
 	t3.decade,
@@ -523,8 +538,11 @@ JOIN (
 ON 
 	t2.max_freq = t3.sum_freq AND
 	t2.decade = t3.decade
-ORDER BY t3.decade, t3.sum_freq DESC
+ORDER BY 
+	t3.decade, 
+	t3.sum_freq DESC
 
+-- #6c
 -- Find the most popular aria per decade
 SELECT
 	t3.decade,
@@ -579,8 +597,11 @@ JOIN (
 ON 
 	t2.max_freq = t3.sum_freq AND
 	t2.decade = t3.decade
-ORDER BY t3.decade, t3.sum_freq DESC
+ORDER BY 
+	t3.decade, 
+	t3.sum_freq DESC
 
+-- #7
 -- Find the most prolific composer per century, in terms of aria frequency
 SELECT
 	t3.century,
@@ -615,8 +636,11 @@ JOIN (
 ON 
 	t2.max_freq = t3.sum_freq AND
 	t2.century = t3.century
-ORDER BY t3.century, t3.sum_freq DESC
+ORDER BY 
+	t3.century, 
+	t3.sum_freq DESC
 
+-- #7a
 -- Find the most prolific language per century, in terms of aria frequency
 SELECT
 	t3.century,
@@ -651,8 +675,11 @@ JOIN (
 ON 
 	t2.max_freq = t3.sum_freq AND
 	t2.century = t3.century
-ORDER BY t3.century, t3.sum_freq DESC
+ORDER BY 
+	t3.century, 
+	t3.sum_freq DESC
 
+-- #7b
 -- Find the most prolific opera per century, in terms of aria frequency
 SELECT
 	t3.century,
@@ -697,8 +724,11 @@ JOIN (
 ON 
 	t2.max_freq = t3.sum_freq AND
 	t2.century = t3.century
-ORDER BY t3.century, t3.sum_freq DESC
+ORDER BY 
+	t3.century, 
+	t3.sum_freq DESC
 
+-- #7c
 -- Find the most prolific aria per century
 SELECT
 	t3.century,
@@ -753,8 +783,11 @@ JOIN (
 ON 
 	t2.max_freq = t3.sum_freq AND
 	t2.century = t3.century
-ORDER BY t3.century, t3.sum_freq DESC
+ORDER BY 
+	t3.century, 
+	t3.sum_freq DESC
 
+-- #8
 -- Find the distribution of languages across time
 SELECT 
 	decade, 
@@ -762,52 +795,49 @@ SELECT
 	SUM(frequency) AS sum_freq
 FROM arias
 GROUP BY 
-	 decade,
+	decade,
 	language 
 ORDER BY
 	decade, 
 	sum_freq DESC
 
+-- #9
 -- Find the number of distinct composers per decade
 SELECT 
 	decade, 
 	COUNT(DISTINCT(composer)) AS composer_count
 FROM arias
-GROUP BY 
-	 decade
-ORDER BY
-	decade
+GROUP BY decade
+ORDER BY decade
 
--- Find the number of distinct composers per century
-SELECT 
-	century, 
-	COUNT(DISTINCT(composer)) AS composer_count
-FROM arias
-GROUP BY 
-	 century
-ORDER BY
-	century
-
+-- #9a
 -- Find the number of distinct operas per decade
 SELECT 
 	decade, 
 	COUNT(DISTINCT(opera)) AS opera_count
 FROM arias
-GROUP BY 
-	decade
-ORDER BY
-	decade
+GROUP BY decade
+ORDER BY decade
 
+-- #9b
+-- Find the number of distinct composers per century
+SELECT 
+	century, 
+	COUNT(DISTINCT(composer)) AS composer_count
+FROM arias
+GROUP BY century
+ORDER BY century
+
+-- #9c
 -- Find the number of distinct operas per century
 SELECT 
 	century, 
 	COUNT(DISTINCT(opera)) AS opera_count
 FROM arias
-GROUP BY 
-	century
-ORDER BY
-	century
+GROUP BY century
+ORDER BY century
 
+-- #10
 -- Query that combines the count of composers and aria frequency count per decade
 SELECT 
 	t1.decade, 
@@ -833,6 +863,7 @@ GROUP BY
 	t2.composer_count,
 	t1.aria_frequency
 
+-- #10a
 -- Query that combines the count of operas and aria frequency count per decade
 SELECT 
 	t1.decade, 
