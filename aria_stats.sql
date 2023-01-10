@@ -216,7 +216,8 @@ JOIN (
 	) c
 ON 
 	s.composer = c.composer AND
-	s.opera = c.opera
+	s.opera = c.opera AND
+	s.language = c.language
 ORDER BY 
 	s.frequency_count DESC,
 	c.aria_count DESC
