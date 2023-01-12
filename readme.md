@@ -66,4 +66,9 @@ Some takeaways:
 
 The 1800s are on top in the number of operas produced, number of arias produced, and frequency of those arias being offered. Many of the composers most closely associated with opera (Verdi, Rossini, Wagner, etc) did most or all of their work in this century. Mozart wrote everything at the end of the 18th century, and he alone accounts for much of the output from that period. [(Graph)](https://public.tableau.com/app/profile/jonathan.heaney/viz/AriaStats/AriaCountbyCentury)
 
-####
+#### Different languages have been dominant in different periods.
+
+- Italy was a consistent source of opera from the beginning (around 1600) until the 1920s or so, when Puccini died.
+- English opera had one hit composer in the late 1600s, Henry Purcell, and then was essentially irrelevant until the 1930s. From the 1930s on, opera in English has been on top, mostly due to the quirks of the American opera audition process as discussed above.
+- French opera had a few popular works in the mix in the 18th century, but the French tradition really exploded from the 1860s to the 1880s, when it overtook Italian as the most popular language for all three decades.
+- German has been part of the equation since Mozart in the 1780s, but only rarely as the most popular language. However, German opera is more important than these statistics would indicate: many of the key German composers (Wagner, Richard Strauss, etc) wrote massive pieces for huge orchestra that are, with some exceptions, too mature for most young singers to tackle.
