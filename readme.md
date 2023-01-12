@@ -38,11 +38,16 @@ Knowing the most popular arias is extremely helpful, but to gain a broader pictu
 
 Some key takeaways from these analyses:
 
-##### Mozart is far and away the most important composer of arias for young singers.
+##### - Mozart is far and away the most important composer of arias for young singers.
 
 It's actually standard practice for every singer to include a Mozart aria in their package of 4-6 pieces; he is the only composer to inspire such a requirement.
 Statistics to illustrate Mozart's dominance:
 
-- Mozart's arias were offered 3,184 times; the second highest was Verdi with only 940. [(Graph)](https://public.tableau.com/app/profile/jonathan.heaney/viz/AriaStats/ComposerFrequency/AriaCount)
+- Mozart's arias were offered 3,184 times; the second highest was Verdi with only 940. [(Graph)](https://public.tableau.com/app/profile/jonathan.heaney/viz/AriaStats/ComposerFrequencyAriaCount)
 - Each of the top 4 most-represented operas are by Mozart. [(Graph)](https://public.tableau.com/app/profile/jonathan.heaney/viz/AriaStats/OperaFrequencyCount)
 - Mozart is the most popular composer in both Italian AND German. [(Graph)](https://public.tableau.com/app/profile/jonathan.heaney/viz/AriaStats/ComposersbyLanguage)
+
+##### - Italian is the most prominent language, followed by English.
+
+Singers are traditionally asked to offer arias across 4 standard languages- Italian, French, German, and English. Some leave out one of these and replace it with a wild card like Russian or Czech, or some lean more heavily on one language in particular. In the end, Italian is far and away the most popular language; opera is an Italian art form, after all.
+English coming in second is a bit surprising in the context of operatic repertoire as a whole. France and Germany both have more distinguished operatic traditions than the United Kingdom and United States. However, for opera auditions in America, it isn't as surprising. Singers are nearly always requested to provide a contemporary piece in English, both to assess musicianship (contemporary scores are usually more complex) and English proficiency (talking to donors/patrons is part of the job description for singers).
