@@ -39,6 +39,7 @@ Some key takeaways from these analyses:
 #### - Mozart is far and away the most important composer of arias for young singers.
 
 It's actually standard practice for every singer to include a Mozart aria in their package of 4-6 pieces; he is the only composer to inspire such a requirement.
+
 Statistics to illustrate Mozart's dominance:
 
 - Mozart's arias were offered 3,184 times; the second highest was Verdi with only 940. [(Graph)](https://public.tableau.com/app/profile/jonathan.heaney/viz/AriaStats/ComposerFrequencyAriaCount)
@@ -47,6 +48,10 @@ Statistics to illustrate Mozart's dominance:
 
 #### - Italian is the most prominent language, followed by English.
 
-Singers are traditionally asked to offer arias across 4 standard languages- Italian, French, German, and English. Some leave out one of these and replace it with a wild card like Russian or Czech, or some lean more heavily on one language in particular. In the end, Italian is far and away the most popular language; opera is an Italian art form, after all.
+Singers are traditionally asked to offer arias across 4 standard languages- Italian, French, German, and English. Some leave out one of these and replace it with a wild card like Russian or Czech, or some lean more heavily on one language in particular. In the end, Italian is far and away the most popular language; opera is an Italian art form, after all. [(Graph)](https://public.tableau.com/app/profile/jonathan.heaney/viz/AriaStats/LanguageFrequencyCount)
 
 English coming in second is a bit surprising in the context of operatic repertoire as a whole. France and Germany both have more distinguished operatic traditions than the United Kingdom and United States. However, for opera auditions in America, it isn't as surprising. Singers are nearly always requested to provide a contemporary piece in English, both to assess musicianship (contemporary scores are usually more complex) and English proficiency (talking to donors/patrons is part of the job description for singers).
+
+#### - Voice types are not equally represented in the pool of singers.
+
+Competition for roles is a lot stiffer for young women than young men in opera. Many more female singers (sopranos or mezzo-sopranos) audition than male singers (tenor, baritone, bass, or countertenor). [Graph](https://public.tableau.com/app/profile/jonathan.heaney/viz/AriaStats/VoicePartFrequencyCount)
