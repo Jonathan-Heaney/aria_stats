@@ -62,11 +62,11 @@ As part of my data cleaning process, I looked up the premiere year of every oper
 
 Some takeaways:
 
-#### The 19th century was the most productive period for opera.
+#### - The 19th century was the most productive period for opera.
 
 The 1800s are on top in the number of operas produced, number of arias produced, and frequency of those arias being offered. Many of the composers most closely associated with opera (Verdi, Rossini, Wagner, etc) did most or all of their work in this century. Mozart wrote everything at the end of the 18th century, and he alone accounts for much of the output from that period. [(Graph)](https://public.tableau.com/app/profile/jonathan.heaney/viz/AriaStats/AriaCountbyCentury)
 
-#### Different languages have been dominant in different periods.
+#### - Different languages have been dominant in different periods.
 
 - Italy was a consistent source of opera from the beginning (around 1600) until the 1920s or so, when Puccini died.
 - English opera had one hit composer in the late 1600s, Henry Purcell, and then was essentially irrelevant until the 1930s. From the 1930s on, opera in English has been on top, mostly due to the quirks of the American opera audition process as discussed above.
@@ -75,7 +75,7 @@ The 1800s are on top in the number of operas produced, number of arias produced,
 
 Graph of [languages across time](https://public.tableau.com/app/profile/jonathan.heaney/viz/AriaStats/LanguagebyDecade), graph of [most popular language per decade/century](https://public.tableau.com/app/profile/jonathan.heaney/viz/AriaStats/TopLanguagebyDecadeCentury)
 
-#### Generally speaking, the number of composers and operas represented has increased over time.
+#### - Generally speaking, the number of composers and operas represented has increased over time.
 
 While the 19th century produced the most operas and arias, the 20th century saw by far the most composers represented. The 21st century, less than 1/5 complete at the time of this data collection, is on pace to smash that record. [(Graph)](https://public.tableau.com/app/profile/jonathan.heaney/viz/AriaStats/ComposerOperaCountbyCentury)
 
