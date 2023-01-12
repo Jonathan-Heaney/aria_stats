@@ -10,11 +10,11 @@ The foundational importance of knowing these popular arias was what motivated me
 
 ## Analysis
 
-Links to data, code, and graphs:
+Links to data, SQL code, and graphs:
 
 - [Dataset](https://docs.google.com/spreadsheets/d/17Qt5mnLgXGZ1ryyki03XkbZMpSovYYgT1uRyux-f1eI/edit#gid=1229051757)
 - [SQL Queries](https://github.com/Jonathan-Heaney/aria_stats/blob/main/aria_stats.sql)
 - [Results sheets](https://docs.google.com/spreadsheets/d/1gzVztDbYSH-RA88E-dpb_SUojyeiU2S_728B0uojT0E/edit#gid=1617119782)
-- [Tableau visualizations](https://public.tableau.com/app/profile/jonathan.heaney/viz/AriaStats/AriaFrequencyvs_ComposerOperaCount)
+- [Tableau visualizations](https://public.tableau.com/app/profile/jonathan.heaney/viz/AriaStats/AriaRanking)
 
 ## Conclusions
