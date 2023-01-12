@@ -54,4 +54,12 @@ English coming in second is a bit surprising in the context of operatic repertoi
 
 #### - Voice types are not equally represented in the pool of singers.
 
-Competition for roles is a lot stiffer for young women than young men in opera. Many more female singers (sopranos or mezzo-sopranos) audition than male singers (tenor, baritone, bass, or countertenor). [Graph](https://public.tableau.com/app/profile/jonathan.heaney/viz/AriaStats/VoicePartFrequencyCount)
+Competition for roles is a lot stiffer for young women than young men in opera. Many more female singers (sopranos or mezzo-sopranos) audition than male singers (tenor, baritone, bass, or countertenor). [(Graph)](https://public.tableau.com/app/profile/jonathan.heaney/viz/AriaStats/VoicePartFrequencyCount)
+
+### Changes Across Time
+
+As part of my data cleaning process, I looked up the premiere year of every opera in the list. In so doing, I was able to see which decades and centuries produced the most popular composers, arias, and operas. I was also able to track the popularity of different languages across time, to see if a certain country was dominant in a particular era.
+
+Some takeaways:
+
+####
