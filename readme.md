@@ -18,3 +18,16 @@ Links to data, SQL code, and graphs:
 - [Tableau visualizations](https://public.tableau.com/app/profile/jonathan.heaney/viz/AriaStats/AriaRanking)
 
 ## Conclusions
+
+### Types of Queries
+
+I performed three types of queries in my analysis: some to filter the aria list, some to determine the popularity of different composers/operas/etc, and some to track changes across time.
+
+#### Filtering the Aria List
+
+In addition to playing arias in auditions, one of my other main roles was to coach singers and help them choose repertoire. A singer might come to me and ask for a new piece to work on- they might have a language in mind, or an era of music, or they might want to choose something less popular to stand out.
+SQL provides the tools to filter the data in any of these ways, to meet any request of any singer. I included several different sample queries in my analysis that filtered the data based on potential requests, including:
+
+- A tenor wants to learn a rarely-performed French aria
+- A mezzo needs a piece written before 1750
+- A baritone doesn't want to sing any Italian music or 19th-century music
