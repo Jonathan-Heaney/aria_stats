@@ -38,4 +38,11 @@ Knowing the most popular arias is extremely helpful, but to gain a broader pictu
 
 Some key takeaways from these analyses:
 
-- Mozart is far and away the most important composer of arias for these young singers. It's actually standard practice for every singer to include a Mozart aria in their package of 4-6 pieces; he is the only composer to inspire such a requirement.
+##### Mozart is far and away the most important composer of arias for young singers.
+
+It's actually standard practice for every singer to include a Mozart aria in their package of 4-6 pieces; he is the only composer to inspire such a requirement.
+Statistics to illustrate Mozart's dominance:
+
+- Mozart's arias were offered 3,184 times; the second highest was Verdi with only 940. [(Graph)](https://public.tableau.com/app/profile/jonathan.heaney/viz/AriaStats/ComposerFrequency/AriaCount)
+- Each of the top 4 most-represented operas are by Mozart. [(Graph)](https://public.tableau.com/app/profile/jonathan.heaney/viz/AriaStats/OperaFrequencyCount)
+- Mozart is the most popular composer in both Italian AND German. [(Graph)](https://public.tableau.com/app/profile/jonathan.heaney/viz/AriaStats/ComposersbyLanguage)
