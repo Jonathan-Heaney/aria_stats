@@ -19,11 +19,9 @@ Links to data, SQL code, and graphs:
 
 ## Conclusions
 
-### Types of Queries
-
 I performed three types of queries in my analysis: some to filter the aria list, some to determine the popularity of different composers/operas/etc, and some to track changes across time.
 
-#### Filtering the Aria List
+### Filtering the Aria List
 
 In addition to playing arias in auditions, one of my other main roles was to coach singers and help them choose repertoire. A singer might come to me and ask for a new piece to work on- they might have a language in mind, or an era of music, or they might want to choose something less popular to stand out.
 SQL provides the tools to filter the data in any of these ways, to meet any request of any singer. I included several different sample queries in my analysis that filtered the data based on potential requests, including:
@@ -32,13 +30,13 @@ SQL provides the tools to filter the data in any of these ways, to meet any requ
 - A mezzo needs a piece written before 1750 [(Graph)](https://public.tableau.com/app/profile/jonathan.heaney/viz/AriaStats/EarlyMezzoArias)
 - A baritone doesn't want to sing any Italian music or 19th-century music [(Graph)](https://public.tableau.com/app/profile/jonathan.heaney/viz/AriaStats/Non-ItalianBaritoneArias)
 
-#### Popularity Across Categories
+### Popularity Across Categories
 
 Knowing the most popular arias is extremely helpful, but to gain a broader picture, I also wanted to know the most common composers, operas, languages, and voice parts.
 
 Some key takeaways from these analyses:
 
-##### - Mozart is far and away the most important composer of arias for young singers.
+#### - Mozart is far and away the most important composer of arias for young singers.
 
 It's actually standard practice for every singer to include a Mozart aria in their package of 4-6 pieces; he is the only composer to inspire such a requirement.
 Statistics to illustrate Mozart's dominance:
@@ -47,7 +45,8 @@ Statistics to illustrate Mozart's dominance:
 - Each of the top 4 most-represented operas are by Mozart. [(Graph)](https://public.tableau.com/app/profile/jonathan.heaney/viz/AriaStats/OperaFrequencyCount)
 - Mozart is the most popular composer in both Italian AND German. [(Graph)](https://public.tableau.com/app/profile/jonathan.heaney/viz/AriaStats/ComposersbyLanguage)
 
-##### - Italian is the most prominent language, followed by English.
+#### - Italian is the most prominent language, followed by English.
 
 Singers are traditionally asked to offer arias across 4 standard languages- Italian, French, German, and English. Some leave out one of these and replace it with a wild card like Russian or Czech, or some lean more heavily on one language in particular. In the end, Italian is far and away the most popular language; opera is an Italian art form, after all.
+
 English coming in second is a bit surprising in the context of operatic repertoire as a whole. France and Germany both have more distinguished operatic traditions than the United Kingdom and United States. However, for opera auditions in America, it isn't as surprising. Singers are nearly always requested to provide a contemporary piece in English, both to assess musicianship (contemporary scores are usually more complex) and English proficiency (talking to donors/patrons is part of the job description for singers).
